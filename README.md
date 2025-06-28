@@ -1,51 +1,164 @@
-# AuthSystem
+# AuthSystem: Secure Node.js Authentication with JWT & Cloudinary 🌐🔐
 
-This project implements a robust authentication system with features such as user registration, login, email verification, text code verification, profile management (including image uploads with abuse detection), and account deletion.
+![AuthSystem](https://img.shields.io/badge/AuthSystem-Node.js-brightgreen) ![Version](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-MIT-yellowgreen)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Verification](#verification)
+- [Image Uploads](#image-uploads)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Overview
+
+AuthSystem is a secure authentication solution built with Node.js. It provides a robust framework for user management and security. The system uses JSON Web Tokens (JWT) for secure authentication and includes features for email and text verification. Additionally, it supports image uploads through Cloudinary, ensuring that your application remains scalable and secure. 
+
+For the latest releases, visit [here](https://github.com/Abijah-Mbala-Mbala/AuthSystem/releases).
 
 ## Features
 
-- User Registration with email and username
-- User Login with JWT authentication
-- Email Verification for new registrations
-- Text Code Verification with rate limiting
-- Profile Image Uploads with Cloudinary integration
-- Gemini API integration for text and image abuse detection
-- Account Deletion with optional Cloudinary image removal
+- **Secure Authentication**: Uses JWT for secure user sessions.
+- **Email Verification**: Ensures users verify their email before accessing the system.
+- **Text Verification**: Adds an extra layer of security via SMS verification.
+- **Image Support**: Upload images using Cloudinary.
+- **Scalable Architecture**: Built on MongoDB for high scalability.
+- **RESTful API**: Easy integration with front-end applications.
+- **User Roles**: Manage user permissions effectively.
 
-## Setup Instructions
+## Technologies Used
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/UltronTheAI/AuthSystem.git
-    cd AuthSystem
-    ```
+- **Node.js**: Server-side JavaScript runtime.
+- **Express**: Web framework for Node.js.
+- **MongoDB**: NoSQL database for data storage.
+- **Mongoose**: ODM library for MongoDB and Node.js.
+- **JWT**: For secure authentication tokens.
+- **Cloudinary**: Image and video management.
+- **Nodemailer**: For sending emails.
+- **Twilio**: For SMS verification.
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+## Installation
 
-3.  **Environment Variables:**
-    Create a `.env` file in the root directory and add the following environment variables:
-    ```
-    PORT=5000
-    MONGO_URI=<Your MongoDB Connection String>
-    JWT_ACCESS_SECRET=<Your JWT Secret Key>
-    GMAIL=<Your Gmail Address for sending emails>
-    GMAIL_PASSWORD=<Your Gmail App Password>
-    CLOUDINARY_CLOUD_NAME=<Your Cloudinary Cloud Name>
-    CLOUDINARY_API_KEY=<Your Cloudinary API Key>
-    CLOUDINARY_API_SECRET=<Your Cloudinary API Secret>
-    GEMINI_API_KEY=<Your Gemini API Key>
-    ```
+To get started with AuthSystem, follow these steps:
 
-4.  **Run the application:**
-    ```bash
-    npm start
-    ```
+1. **Clone the repository**:
 
-    The server will run on `http://localhost:5000` (or your specified PORT).
+   ```bash
+   git clone https://github.com/Abijah-Mbala-Mbala/AuthSystem.git
+   ```
 
-## API Documentation
+2. **Navigate to the project directory**:
 
-For detailed API endpoint documentation, refer to [API.md](docs/API.md).
+   ```bash
+   cd AuthSystem
+   ```
+
+3. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+4. **Set up environment variables**:
+
+   Create a `.env` file in the root directory and add the following:
+
+   ```
+   MONGODB_URI=your_mongodb_uri
+   JWT_SECRET=your_jwt_secret
+   CLOUDINARY_URL=your_cloudinary_url
+   EMAIL_USER=your_email_user
+   EMAIL_PASS=your_email_password
+   TWILIO_ACCOUNT_SID=your_twilio_account_sid
+   TWILIO_AUTH_TOKEN=your_twilio_auth_token
+   TWILIO_PHONE_NUMBER=your_twilio_phone_number
+   ```
+
+5. **Run the application**:
+
+   ```bash
+   npm start
+   ```
+
+## Usage
+
+After setting up, you can access the API endpoints. Use tools like Postman or cURL to test the endpoints.
+
+### Example Request
+
+To register a user, send a POST request to `/api/auth/register` with the following body:
+
+```json
+{
+  "username": "exampleUser",
+  "email": "user@example.com",
+  "password": "yourPassword"
+}
+```
+
+## API Endpoints
+
+### Authentication Endpoints
+
+- **Register User**: `POST /api/auth/register`
+- **Login User**: `POST /api/auth/login`
+- **Verify Email**: `GET /api/auth/verify/:token`
+- **Send Verification SMS**: `POST /api/auth/verify-sms`
+
+### User Management
+
+- **Get User Profile**: `GET /api/user/profile`
+- **Update User Profile**: `PUT /api/user/profile`
+- **Delete User**: `DELETE /api/user/:id`
+
+### Image Uploads
+
+- **Upload Image**: `POST /api/upload`
+
+## Verification
+
+### Email Verification
+
+Upon registration, the user receives an email with a verification link. Clicking this link verifies their email address. 
+
+### SMS Verification
+
+Users can request an SMS verification code. They must enter this code to complete their registration. 
+
+## Image Uploads
+
+AuthSystem supports image uploads via Cloudinary. To upload an image, send a POST request to `/api/upload` with the image file included in the form data.
+
+### Example Upload Request
+
+```bash
+curl -X POST http://localhost:5000/api/upload \
+-F "image=@/path/to/your/image.jpg"
+```
+
+## Contributing
+
+We welcome contributions to AuthSystem. To contribute:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/YourFeature`
+3. Make your changes.
+4. Commit your changes: `git commit -m 'Add your feature'`
+5. Push to the branch: `git push origin feature/YourFeature`
+6. Create a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or suggestions, reach out via GitHub or open an issue in the repository. 
+
+For the latest releases, visit [here](https://github.com/Abijah-Mbala-Mbala/AuthSystem/releases).
